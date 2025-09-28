@@ -35,8 +35,7 @@ def formatar_cpf():
         exit()
 
     cpf_verificacao = cpf_formatado
-    cpf_formatado = cpf_formatado[0:9:]  #limita 9 caracteres
-    cpf_formatado = cpf_formatado[::-1]  #inverte o cpf
+    cpf_formatado = cpf_formatado[0:9:][::-1]  #limita 9 caracteres
     return cpf_formatado, cpf_verificacao
 
 def validar_cpf():
@@ -54,13 +53,7 @@ def validar_cpf():
             contador += 1
 
         resto = soma_cpf % 11
-
-        if resto < 2:
-            digito_verificador = '0'
-        if resto >= 2:
-            digito_verificador = eval('11 - resto')
-            digito_verificador = str(digito_verificador)
-
+        digito_verificador = '0' if resto < 2 else str(11 - resto)
         cpf_formatado = digito_verificador + cpf_formatado
 
     cpf_formatado = cpf_formatado[::-1]
@@ -86,12 +79,7 @@ def gerar_cpf():
 
         resto = soma_cpf % 11
 
-        if resto < 2:
-            digito_verificador = '0'
-        if resto >= 2:
-            digito_verificador = eval('11 - resto')
-            digito_verificador = str(digito_verificador)
-
+        digito_verificador = '0' if resto < 2 else str(11 - resto) 
         cpf_formatado = digito_verificador + cpf_formatado
 
     cpf_formatado = cpf_formatado[::-1]
