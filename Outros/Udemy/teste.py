@@ -1,3 +1,4 @@
+import random
 # contador = 0
 # palavra_secreta = 'paralelepipedo'
 # palavra_censurada = ''
@@ -18,6 +19,6 @@
 #         contador += 1
 # 
 
-cpf = '050657861'
+random.shuffle(lista)
 
-print(len(cpf))
+print(lista)

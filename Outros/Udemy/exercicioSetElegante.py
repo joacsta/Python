@@ -8,11 +8,11 @@ lista_de_numeros = [
     for _ in range(numero_aleatorio)
 ]
 
-def encontrar_numeros_duplicados(lista_de_numeros):
+def encontrar_numeros_duplicados(lista_numeros):
     numeros_encontrados = set()
     encontrou_numero = None
 
-    for numero in lista_de_numeros:
+    for numero in lista_numeros:
         if numero in numeros_encontrados:
             encontrou_numero = numero
             break
@@ -22,3 +22,4 @@ def encontrar_numeros_duplicados(lista_de_numeros):
 
 for lista in lista_de_numeros:
     print(lista, encontrar_numeros_duplicados(lista))
+
