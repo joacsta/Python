@@ -18,3 +18,5 @@ O que pretendo adicionar nas próximas versões:
 * [ ] Adicionar data e hora de criação/modificação
 * [ ] Implementar prazos (integrado com o sistema de data/hora)
 * [ ] Sistema de categorias (provavelmente usando diretórios)
+* [ ] Sistema de lembrete configurável
+* [ ] Persistência de dados
