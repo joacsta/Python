@@ -1,5 +1,6 @@
 import os
 import time
+from datetime import datetime
 
 MENU_PRINCIPAL = \
 """
@@ -15,7 +16,6 @@ Digite o número ou o que deseja fazer:
     4 - Visualizar lista de tarefas;
 
 Digite [s] para sair.
-|Python 3.14|
 """
 TITULO = \
 """
@@ -27,6 +27,25 @@ TITULO = \
 checkbox_vazio = '\u2610'
 checkbox_marcado = '\u2611'
 
+
+def atualizar_datetime():
+    data_atual = datetime.now()
+
+    dia_atual = data_atual.day
+    mes_atual = data_atual.month
+    ano_atual = data_atual.year
+    dia = f'{dia_atual}/{mes_atual}/{ano_atual}'
+
+    horas_atual = data_atual.hour
+    minutos_atual = data_atual.minute
+    if len(str(minutos_atual)) < 2:
+        minutos_atual = '0'+ f'{minutos_atual}'
+    horario = f'{horas_atual}:{minutos_atual}'
+    
+    print (f'{horario} | {dia}')
+    
+
+
 lista_tarefas = [
     'fazer uma coisa',
     'fazer outra coisa',
@@ -34,10 +53,13 @@ lista_tarefas = [
     'fazer mais uma coisa'
 ]
 
+
 def limpar_terminal():
     os.system('clear')
 
 def menu_principal():
+    
+    atualizar_datetime()
     return print(MENU_PRINCIPAL)
 
 def add_tarefas(*args):
@@ -123,6 +145,7 @@ opcoes_menu = {
     '4': visualizar_tarefas,
     '0': limpar_terminal,
 }
+
 def main():
     while True:
         menu_principal()
