@@ -25,26 +25,7 @@ TITULO = \
 """
 
 checkbox_vazio = '\u2610'
-checkbox_marcado = '\u2611'
-
-
-def atualizar_datetime():
-    data_atual = datetime.now()
-
-    dia_atual = data_atual.day
-    mes_atual = data_atual.month
-    ano_atual = data_atual.year
-    dia = f'{dia_atual}/{mes_atual}/{ano_atual}'
-
-    horas_atual = data_atual.hour
-    minutos_atual = data_atual.minute
-    if len(str(minutos_atual)) < 2:
-        minutos_atual = '0'+ f'{minutos_atual}'
-    horario = f'{horas_atual}:{minutos_atual}'
-    
-    print (f'{horario} | {dia}')
-    
-
+checkbox_marcado = '\u2611' 
 
 lista_tarefas = [
     'fazer uma coisa',
@@ -53,13 +34,18 @@ lista_tarefas = [
     'fazer mais uma coisa'
 ]
 
+def getdate():
+    data_hora_atual = datetime.now()
+    hora = data_hora_atual.strftime('%H:%M')
+    data = data_hora_atual.strftime('%d/%m/%Y')
+    print(f'{hora} | {data}')
 
 def limpar_terminal():
     os.system('clear')
 
 def menu_principal():
     
-    atualizar_datetime()
+    getdate()
     return print(MENU_PRINCIPAL)
 
 def add_tarefas(*args):
