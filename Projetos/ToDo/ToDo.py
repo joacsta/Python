@@ -55,7 +55,7 @@ def add_tarefas(*args):
         f'{len(args)} tarefa(s) adicionada(s) com sucesso!'
         f'\nSelecione a opção "Visualizar" para visualizá-las.'
     )
-    time.sleep(3)
+    time.sleep(2)
     limpar_terminal()
     return lista_tarefas
 
@@ -79,13 +79,13 @@ def editar_tarefa(indice_valor: int):
         f'\nAlteração realizada com sucesso!'
         f'\nSelecione a opção "Visualizar" para visualizá-las.'
     )
-    time.sleep(3)
+    time.sleep(2)
     limpar_terminal()
     return lista_tarefas
 
 def executar_editar_tarefa():
     visualizar_tarefas()
-    time.sleep(1)
+    time.sleep(2)
     indice_buscado = input('Digite o índice da tarefa que deseja editar: ')
     try:
         editar_tarefa(int(indice_buscado))
@@ -99,6 +99,7 @@ def excluir_tarefas(*args):
         if indice not in indices_a_excluir:
             lista_atualizada.append(tarefa)
     print(f'{len(indices_a_excluir)} tarefa(s) excluída(s).')
+    time.sleep(2)
     lista_tarefas[:] = lista_atualizada
 
 def executar_excluir_tarefas():
@@ -108,7 +109,9 @@ def executar_excluir_tarefas():
         'Digite os índices a serem excluídos (separe por vírgulas): '
     )
     try:
-        lista_exclusao = {int(indice.strip()) for indice in excluir_indices.split(',')}
+        lista_exclusao = {
+            int(indice.strip()) for indice in excluir_indices.split(',')
+        }
         excluir_tarefas(*lista_exclusao)
     except ValueError:
         print('Erro.')
@@ -119,6 +122,17 @@ def visualizar_tarefas():
         print(f'{checkbox_vazio} {indice}) {tarefa}')
     print(f'\nTotal de tarefas: {len(lista_tarefas)}')
 
+def executar_visualizar_tarefas():
+    limpar_terminal()
+    while True:
+        visualizar_tarefas()
+        user_input = input('\nPressione [Enter] para voltar ao menu.')
+        if not user_input:
+            limpar_terminal()
+            break
+        else:
+            limpar_terminal()
+
 opcoes_menu = {
     'adicionar': executar_add_tarefas,
     'editar': executar_editar_tarefa,
@@ -128,12 +142,13 @@ opcoes_menu = {
     '1': executar_add_tarefas,
     '2': executar_editar_tarefa,
     '3': executar_excluir_tarefas,
-    '4': visualizar_tarefas,
+    '4': executar_visualizar_tarefas,
     '0': limpar_terminal,
 }
 
 def main():
     while True:
+        limpar_terminal()
         menu_principal()
         usuario_input = input('O que deseja fazer? ').strip()
         if usuario_input.lower().startswith('s'):
@@ -143,7 +158,6 @@ def main():
         if funcao_executar:
             funcao_executar()
         else:
-            print('Erro...')
             limpar_terminal()
 
 if __name__ == '__main__':
