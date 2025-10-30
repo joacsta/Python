@@ -4,7 +4,7 @@ def notas():
 
 def calcmedia(nota1, nota2):
 
-    media=(nota1+nota2)/2
+    media=(nota1 + nota2)/2
 
     if media >= 7.0:
         print("Aprovado! Sua nota foi de: %.1f" %media)

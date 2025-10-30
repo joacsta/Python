@@ -15,7 +15,7 @@ Esta versão é uma refatoração da v0.1. O código agora está mais limpo, dir
 O que pretendo adicionar nas próximas versões:
 
 * [ ] Um sistema de "checkbox" (para marcar como concluído)
-* [ ] Adicionar sistemas de data e hora de criação/modificação
+* [ ] Adicionar sistemas de data e hora
 * [ ] Implementar prazos (integrado com o sistema de data/hora)
 * [ ] Sistema de categorias (provavelmente usando diretórios)
 * [ ] Sistema de lembrete configurável
