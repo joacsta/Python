@@ -44,53 +44,58 @@ def limpar_terminal():
     os.system('clear')
 
 def menu_principal():
-    
     getdate()
     return print(MENU_PRINCIPAL)
 
 def add_tarefas(*args):
     for arg in args:
        lista_tarefas.append(arg)
-    print(
-        f'{len(args)} tarefa(s) adicionada(s) com sucesso!'
-        f'\nSelecione a opção "Visualizar" para visualizá-las.'
-    )
-    time.sleep(2)
-    limpar_terminal()
     return lista_tarefas
 
 def executar_add_tarefas():
+    limpar_terminal()
+    numero_de_tarefas_lista = len(lista_tarefas)
+    print(f'Atualmente, você tem {numero_de_tarefas_lista} tarefas para fazer.')
     novas_tarefas = input(
-        'Digite as tarefas que voce deseja adicionar (separe por vírgulas): '
+        'Pressione [Enter] para voltar ao menu.'
+        '\nDigite as tarefas que voce deseja adicionar '
+        '(Caso queira adicionar mais de uma tarefa, separe por vírgulas): '
     )
-    lista_novas_tarefas = [
-        tarefas.strip() for tarefas in novas_tarefas.split(',')
-    ]
-    add_tarefas(*lista_novas_tarefas)
+    if not novas_tarefas:
+        return
+    else:
+        lista_novas_tarefas = [
+            tarefas.strip() for tarefas in novas_tarefas.split(',')
+        ]
+        add_tarefas(*lista_novas_tarefas)
+        print('Tarefa(s) adicionada(s) com êxito!')
+        time.sleep(2)
 
 def editar_tarefa(indice_valor: int):
     indice_valor -= 1
     if 0 <= indice_valor < len(lista_tarefas):
-        print(f'voce selecionou: {lista_tarefas[indice_valor]}')
+        print(f'Voce selecionou: {lista_tarefas[indice_valor]}')
         lista_tarefas[indice_valor] = input('Como deseja alterar? ')
-    else:
-        print(f'indice {indice_valor} nao definido.')
-    print(
-        f'\nAlteração realizada com sucesso!'
-        f'\nSelecione a opção "Visualizar" para visualizá-las.'
-    )
-    time.sleep(2)
-    limpar_terminal()
     return lista_tarefas
 
 def executar_editar_tarefa():
+    limpar_terminal()
     visualizar_tarefas()
-    time.sleep(2)
-    indice_buscado = input('Digite o índice da tarefa que deseja editar: ')
+    indice_buscado = input(
+        'Pressione [Enter] para voltar ao menu.'
+        '\nDigite o índice da tarefa que deseja editar: '
+    )
     try:
-        editar_tarefa(int(indice_buscado))
+        if not indice_buscado:
+            return
+        else:
+            editar_tarefa(int(indice_buscado))
+            print('Alteração realizada com sucesso.')
+            time.sleep(2)
     except ValueError:
         print('Erro. Um número inteiro precisa ser digitado.')
+        time.sleep(2)
+        return
 
 def excluir_tarefas(*args):
     indices_a_excluir = set(args)
@@ -98,21 +103,25 @@ def excluir_tarefas(*args):
     for indice, tarefa in enumerate(lista_tarefas, start=1):
         if indice not in indices_a_excluir:
             lista_atualizada.append(tarefa)
-    print(f'{len(indices_a_excluir)} tarefa(s) excluída(s).')
-    time.sleep(2)
     lista_tarefas[:] = lista_atualizada
 
 def executar_excluir_tarefas():
     limpar_terminal()
     visualizar_tarefas()
     excluir_indices = input(
-        'Digite os índices a serem excluídos (separe por vírgulas): '
+        'Pressione [Enter] para voltar ao menu.'
+        '\nDigite os índices a serem excluídos (separe por vírgulas): '
     )
     try:
-        lista_exclusao = {
-            int(indice.strip()) for indice in excluir_indices.split(',')
-        }
-        excluir_tarefas(*lista_exclusao)
+        if not excluir_indices:
+            return
+        else:
+            lista_exclusao = {
+                int(indice.strip()) for indice in excluir_indices.split(',')
+            }
+            excluir_tarefas(*lista_exclusao)
+            print('Procedimento realizado com sucesso.')
+            time.sleep(2)
     except ValueError:
         print('Erro.')
 
